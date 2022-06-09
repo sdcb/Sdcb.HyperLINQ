@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/sdcb/Sdcb.HyperLINQ</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>html;template-engine;</PackageTags>
-    <VersionPrefix>1.0.01</VersionPrefix>
+    <VersionPrefix>1.0.0</VersionPrefix>
     <Description>Hyperlinq is a C# library for tersely constructing the elements and attributes that comprise an HTML DOM. </Description>
     <Authors>sdcb;</Authors>
   </PropertyGroup>

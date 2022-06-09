@@ -1,4 +1,7 @@
-﻿namespace Sdcb.HyperLINQ
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Sdcb.HyperLINQ
 {
     public static class HyperlinqHelper
     {

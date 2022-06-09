@@ -1,4 +1,7 @@
-﻿using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Sdcb.HyperLINQ
@@ -30,15 +33,15 @@ namespace Sdcb.HyperLINQ
         {
             Member = GetMemberInfoFromExpression (idExpression);
             Id = Member.Name;
-            DataType = Member is PropertyInfo ? ((PropertyInfo)Member).PropertyType : ((FieldInfo)Member).FieldType;
+            DataType = Member is PropertyInfo info ? info.PropertyType : ((FieldInfo)Member).FieldType;
             Data = idExpression.Compile()();
             Label = label ?? StringHelper.CSharpNameToFriendlyName (Id);
-            IsRequired = HExtensions.ResolveIsRequired == null ? false : HExtensions.ResolveIsRequired (Member);
+            IsRequired = HExtensions.ResolveIsRequired != null && HExtensions.ResolveIsRequired (Member);
         }
 
         static MemberInfo GetMemberInfoFromExpression (Expression<Func<object>> expression)
         {
-            var body = expression.Body is UnaryExpression ? ((UnaryExpression)expression.Body).Operand : expression.Body;
+            Expression body = expression.Body is UnaryExpression expression1 ? expression1.Operand : expression.Body;
             return ((MemberExpression)body).Member;
         }
     }
@@ -136,7 +139,7 @@ namespace Sdcb.HyperLINQ
 
         public override HElement ToElement (IEnumerable<HAttribute> customAttributes)
         {
-            options = options ?? EnumHelper.ValuesWithNamesCanonical (DataType);
+            options ??= EnumHelper.ValuesWithNamesCanonical (DataType);
 
             var placeholder = new[] {H.option (a => a.value (""))};
 

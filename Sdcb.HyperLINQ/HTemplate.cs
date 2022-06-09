@@ -1,4 +1,5 @@
 ﻿using Sdcb.HyperLINQ.Imp;
+using System;
 using System.Linq.Expressions;
 
 #pragma warning disable IDE1006 // 命名样式

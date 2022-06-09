@@ -1,4 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Sdcb.HyperLINQ
 {
@@ -51,7 +54,7 @@ namespace Sdcb.HyperLINQ
     {
         public static IEnumerable<T> EmptyNotNull<T> (this IEnumerable<T> list)
         {
-            return list == null ? new T[0] : list;
+            return list ?? (new T[0]);
         }
     }
 
